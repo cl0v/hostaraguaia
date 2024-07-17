@@ -1,16 +1,22 @@
-# hostaraguaia
+# Hostaraguaia
 
 Projeto de avaliação de conhecimentos em Flutter/Dart.
 
-## Getting Started
+## Primeiros passos
 
-This project is a starting point for a Flutter application.
+Foi requisitado que o aplicativo funcione perfeitamente para Web, Android e iOS.
 
-A few resources to get you started if this is your first Flutter project:
+Caso ainda não tenha instalado o flutter, visite: [Install Flutter](https://docs.flutter.dev/get-started/install)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Para executar o projeto, siga as etapas:
+1. Crie um arquivo .env na raiz do projeto
+```sh
+touch .env
+echo "WATCH_MODE_API_KEY=$YOUR_API_KEY_HERE" >> .env
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh
+flutter run
+```
+
+
