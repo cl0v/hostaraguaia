@@ -21,7 +21,7 @@ class HiveDatabaseService implements FavoritesDatabaseService {
   @override
   Future<void> addFavorite(MovieCardEntity movie) async {
     var box = Hive.box(boxName);
-    return await box.put(movie.id, jsonEncode(MovieCardModel.fromEntity(movie).toJson()));
+    return await box.put(movie.id, jsonEncode(MovieCardReleasesModel.fromEntity(movie).toJson()));
   }
 
   @override
@@ -38,7 +38,7 @@ class HiveDatabaseService implements FavoritesDatabaseService {
 
     for (var id in box.keys) {
       final data = await box.get(id);
-      final entity = MovieCardModel.fromJson(jsonDecode(data));
+      final entity = MovieCardReleasesModel.fromJson(jsonDecode(data));
       list.add(entity);
     }
 

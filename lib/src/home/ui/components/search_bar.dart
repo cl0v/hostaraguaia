@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../blocs/search_bloc.dart';
 
 class SearchBarComponent extends StatefulWidget {
   const SearchBarComponent({super.key});
@@ -24,7 +27,9 @@ class _SearchBarComponentState extends State<SearchBarComponent> {
         labelText: 'Pesquise por um titulo',
         border: const OutlineInputBorder(),
         suffixIcon: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<SearchBloc>().add(textController.text);
+          },
           icon: const Icon(Icons.search),
         ),
       ),
