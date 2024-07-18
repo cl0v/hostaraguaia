@@ -1,4 +1,4 @@
-import 'package:hostaraguaia/src/details/data/services/hive_database_service.dart';
+import 'package:hostaraguaia/src/favorites/data/services/hive_database_service.dart';
 import 'package:hostaraguaia/src/home/domain/entities/movie_card_entity.dart';
 
 import '../../domain/repositories/favorites_repository.dart';
