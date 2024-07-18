@@ -14,7 +14,7 @@ class FavoritesSessionComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: const Text('Meus Favoritos'),
-      backgroundColor: Colors.red[50],
+      backgroundColor: MediaQuery.of(context).platformBrightness == Brightness.dark ? Colors.red[900] : Colors.red[50],
       children: [
         BlocBuilder<FavoriteBloc, List<MovieCardEntity>>(
             builder: (context, state) {
