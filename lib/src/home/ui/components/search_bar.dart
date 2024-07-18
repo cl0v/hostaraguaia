@@ -18,19 +18,16 @@ class _SearchBarComponentState extends State<SearchBarComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: TextField(
-            controller: textController,
-            decoration: const InputDecoration(
-              labelText: 'Pesquise por um titulo',
-              border: OutlineInputBorder(),
-            ),
-          ),
+    return TextField(
+      controller: textController,
+      decoration: InputDecoration(
+        labelText: 'Pesquise por um titulo',
+        border: const OutlineInputBorder(),
+        suffixIcon: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.search),
         ),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-      ],
+      ),
     );
   }
 }
