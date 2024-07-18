@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hostaraguaia/src/details/data/services/hive_database_service.dart';
+import 'package:hostaraguaia/src/favorites/data/services/hive_database_service.dart';
 import 'src/favorites/data/repositories/favorites_repository.dart';
 import 'src/favorites/ui/blocs/favorite_bloc.dart';
 import 'src/home/ui/home_page.dart';

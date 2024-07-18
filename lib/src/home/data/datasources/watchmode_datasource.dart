@@ -18,7 +18,7 @@ class WatchModeDataSourceImpl implements IMoviesSearchDataSource {
       return _listReleases();
     }
     final url = Uri.parse(
-      'https://api.watchmode.com/v1/autocomplete-search/?apiKey=$watchmode_api_key&search_value=$query&search_type=3',
+      'https://api.watchmode.com/v1/autocomplete-search/?apiKey=$watchmodeApiKey&search_value=$query&search_type=3',
     ).toString();
     final r = await client.get(url);
     List<MovieCardEntity> movies = [];
@@ -36,7 +36,7 @@ class WatchModeDataSourceImpl implements IMoviesSearchDataSource {
 
   Future<List<MovieCardEntity>> _listReleases() async {
     final r = await client.get(
-      'https://api.watchmode.com/v1/releases/?apiKey=$watchmode_api_key',
+      'https://api.watchmode.com/v1/releases/?apiKey=$watchmodeApiKey',
     );
     List<MovieCardEntity> movies = [];
     for (var item in r.data['releases']) {
