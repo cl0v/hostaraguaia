@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hostaraguaia/src/home/domain/repositories/favorites_repository.dart';
-import '../../domain/entities/movie_card_entity.dart';
+import 'package:hostaraguaia/src/favorites/domain/repositories/favorites_repository.dart';
+import '../../../home/domain/entities/movie_card_entity.dart';
 
 sealed class FavoriteMovieEvent {}
 

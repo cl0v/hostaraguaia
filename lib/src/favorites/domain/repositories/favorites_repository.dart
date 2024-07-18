@@ -1,4 +1,4 @@
-import '../entities/movie_card_entity.dart';
+import '../../../home/domain/entities/movie_card_entity.dart';
 
 abstract class IFavoritesRepository {
   Future<void> addFavorite(MovieCardEntity movie);
