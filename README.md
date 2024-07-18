@@ -9,10 +9,10 @@ Foi requisitado que o aplicativo funcione perfeitamente para Web, Android e iOS.
 Caso ainda não tenha instalado o flutter, visite: [Install Flutter](https://docs.flutter.dev/get-started/install)
 
 Para executar o projeto, siga as etapas:
-1. Crie um arquivo .env na raiz do projeto
+1. Crie um arquivo .env na pasta 'assets' do projeto
 ```sh
-touch .env
-echo "WATCH_MODE_API_KEY=$YOUR_API_KEY_HERE" >> .env
+touch assets/.env
+echo "WATCH_MODE_API_KEY=$YOUR_API_KEY_HERE" >> assets/.env
 ```
 
 ```sh
