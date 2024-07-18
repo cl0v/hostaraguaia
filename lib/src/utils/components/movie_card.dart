@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hostaraguaia/src/home/domain/entities/movie_card_entity.dart';
 
-import '../blocs/favorite_bloc.dart';
+import '../../details/ui/details_page.dart';
+import '../../favorites/ui/blocs/favorite_bloc.dart';
 
 class MovieCardComponent extends StatelessWidget {
   const MovieCardComponent({
@@ -21,8 +22,14 @@ class MovieCardComponent extends StatelessWidget {
       }
       return Stack(
         children: [
-          Image.network(
-            movie.posterUrl,
+          GestureDetector(
+            child: Image.network(
+              movie.posterUrl,
+            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => DetailsPage(movie: movie)),
+            ),
           ),
           IconButton(
             onPressed: () {

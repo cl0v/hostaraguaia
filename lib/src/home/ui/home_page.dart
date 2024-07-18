@@ -1,14 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hostaraguaia/src/home/data/repositories/favorites_repository.dart';
+import 'package:hostaraguaia/src/favorites/ui/favorites_page.dart';
 import 'package:hostaraguaia/src/home/data/repositories/search_movies_repository.dart';
-import 'package:hostaraguaia/src/home/ui/components/movies_grid_view.dart';
+import 'package:hostaraguaia/src/home/ui/components/movies_session_view.dart';
 import '../data/datasources/watchmode_datasource.dart';
-import '../data/services/hive_database_service.dart';
-import 'blocs/favorite_bloc.dart';
+import '../../favorites/ui/blocs/favorite_bloc.dart';
 import 'blocs/search_bloc.dart';
-import 'components/favorites_session.dart';
+import 'components/favorites_session_view.dart';
 import 'components/search_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,30 +15,21 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<SearchBloc>(
-          create: (BuildContext context) => SearchBloc(
-            SearchMoviesRepository(
-              dataSource: WatchModeDataSourceImpl(Dio()),
-            ),
-          ),
+    return BlocProvider(
+      create: (BuildContext context) => SearchBloc(
+        SearchMoviesRepository(
+          dataSource: WatchModeDataSourceImpl(Dio()),
         ),
-        BlocProvider<FavoriteBloc>(
-          create: (BuildContext context) => FavoriteBloc(
-            FavoritesRepository(
-              service: HiveDatabaseService(),
-            ),
-          ),
-        ),
-      ],
+      ),
       child: const _HomeBody(),
     );
   }
 }
 
 class _HomeBody extends StatefulWidget {
-  const _HomeBody({super.key});
+  const _HomeBody({
+    super.key,
+  });
 
   @override
   State<_HomeBody> createState() => __HomeBodyState();
@@ -57,7 +47,20 @@ class __HomeBodyState extends State<_HomeBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Filmes'),
+        title: Text('Hostaraguaia'.toUpperCase()),
+        centerTitle: false,
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const FavoritesPage(),
+                  ),
+                );
+              },
+              child: const Text('Favoritos')),
+        ],
       ),
       body: SafeArea(
         minimum: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -72,7 +75,7 @@ class __HomeBodyState extends State<_HomeBody> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
-              const MoviesSessionComponent(),
+              const MoviesSessionView(),
             ],
           ),
         ),
