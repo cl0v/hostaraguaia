@@ -22,7 +22,7 @@ class MovieDetailsModel extends MovieDetailsEntity {
   get overview => super.overview;
 
   @override
-  @JsonKey(name: "user_rating")
+  @JsonKey(name: "user_rating", defaultValue: 0)
   get rating => super.rating;
 
   @override

@@ -12,7 +12,7 @@ MovieDetailsModel _$MovieDetailsModelFromJson(Map<String, dynamic> json) =>
       imageUrl: json['poster'] as String,
       overview: json['plot_overview'] as String,
       year: (json['year'] as num).toInt(),
-      rating: (json['user_rating'] as num).toDouble(),
+      rating: (json['user_rating'] as num?)?.toDouble() ?? 0,
       streamingAppsModel:
           MovieDetailsModel._streamingAppsFromJson(json['sources'] as List),
     );
