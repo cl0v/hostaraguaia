@@ -34,7 +34,6 @@ class HiveDatabaseService implements FavoritesDatabaseService {
   Future<List<MovieCardEntity>> getFavorites() async {
     var box = Hive.box(boxName);
     var list = <MovieCardEntity>[];
-    print(box.keys);
 
     for (var id in box.keys) {
       final data = await box.get(id);
