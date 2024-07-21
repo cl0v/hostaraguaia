@@ -1,22 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/entities/movie_card_entity.dart';
 import '../../domain/repositories/search_movies_repository.dart';
-
-sealed class SearchMoviesStates {}
-
-class SearchMoviesLoadingState extends SearchMoviesStates {}
-
-class SearchMoviesErrorState extends SearchMoviesStates {
-  final String message;
-  SearchMoviesErrorState(this.message);
-}
-
-class MoviesNotFoundState extends SearchMoviesStates {}
-
-class SearchMoviesSuccessState extends SearchMoviesStates {
-  final List<MovieCardEntity> movies;
-  SearchMoviesSuccessState(this.movies);
-}
+import '../states/search_movies_states.dart';
 
 class SearchBloc extends Bloc<String, SearchMoviesStates> {
   ISearchMoviesRepository repository;

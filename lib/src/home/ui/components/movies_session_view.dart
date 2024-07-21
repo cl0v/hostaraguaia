@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/components/movies_grid_view.dart';
 import '../blocs/search_bloc.dart';
+import '../states/search_movies_states.dart';
 
 class MoviesSessionView extends StatelessWidget {
   const MoviesSessionView({super.key});
