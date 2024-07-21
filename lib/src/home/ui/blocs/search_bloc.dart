@@ -12,9 +12,11 @@ class SearchBloc extends Bloc<String, SearchMoviesStates> {
     on<String>((event, emit) async {
       if (state.hasReachedMax) return;
       try {
-        if (state.status == MoviesStatus.initial) {
+        if (state.status == MoviesStatus.initial ||
+            state.searchFieldText != event) {
           final movies = await repository.searchMovies(event);
           return emit(state.copyWith(
+            searchFieldText: event,
             status: MoviesStatus.success,
             movies: movies,
             hasReachedMax: false,
@@ -24,6 +26,7 @@ class SearchBloc extends Bloc<String, SearchMoviesStates> {
         emit(movies.isEmpty
             ? state.copyWith(hasReachedMax: true)
             : state.copyWith(
+                searchFieldText: event,
                 status: MoviesStatus.success,
                 movies: List.of(state.movies)..addAll(movies),
                 hasReachedMax: false,
