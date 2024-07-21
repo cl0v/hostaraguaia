@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/components/movies_grid_view.dart';
 import '../blocs/search_bloc.dart';
-import '../states/search_movies_states.dart';
 
 class MoviesSessionView extends StatelessWidget {
   const MoviesSessionView({super.key});
@@ -23,28 +22,26 @@ class MoviesSessionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchMoviesStates>(
         builder: (context, state) {
-      if (state is SearchMoviesLoadingState) {
-        return Center(
-          child: _isIOS()
-              ? const CupertinoActivityIndicator()
-              : const CircularProgressIndicator(),
-        );
-      } else if (state is MoviesNotFoundState) {
-        return const Center(
-          child: Text('Nenhum filme encontrado'),
-        );
-      } else if (state is SearchMoviesErrorState) {
-        return Center(
-          child: Text(state.message),
-        );
-      } else if (state is SearchMoviesSuccessState) {
-        return MoviesGridViewComponent(
-          movies: state.movies,
-        );
-      } else {
-        return const Center(
-          child: Text('Ocorreu um erro, tente novamente mais tarde!'),
-        );
+      switch (state.status) {
+        case MoviesStatus.initial:
+          return Center(
+            child: _isIOS()
+                ? const CupertinoActivityIndicator()
+                : const CircularProgressIndicator(),
+          );
+        case MoviesStatus.success:
+          return MoviesGridViewComponent(
+            movies: state.movies,
+          );
+        case MoviesStatus.failure:
+          return const Center(
+            child: Text('Ocorreu um erro, tente novamente mais tarde!'),
+          );
+
+        default:
+          return const Center(
+            child: Text('Nenhum filme encontrado'),
+          );
       }
     });
   }
