@@ -33,8 +33,9 @@ class MovieDetailsModel extends MovieDetailsEntity {
   static List<StreamingAppsModel> _streamingAppsFromJson(List<dynamic> list) {
     var l = <StreamingAppsModel>[];
     for (var item in list) {
+      item['web_url'] = Uri.parse(item['web_url']).toString();
       final model = StreamingAppsModel.fromJson(item);
-      if (l.contains(model)) continue;
+      if (l.any((i) => i.name == model.name)) continue;
       l.add(model);
     }
     return l;
@@ -58,6 +59,6 @@ class StreamingAppsModel extends StreamingAppsEntity with EquatableMixin {
   factory StreamingAppsModel.fromJson(Map<String, dynamic> json) =>
       _$StreamingAppsModelFromJson(json);
 
-@override
-List<Object?> get props => [name, url];
+  @override
+  List<Object?> get props => [name, url];
 }

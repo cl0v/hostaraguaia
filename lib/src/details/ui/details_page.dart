@@ -79,72 +79,74 @@ class _DetailsPageState extends State<DetailsPage> {
               );
             } else if (snapshot.hasData) {
               final entity = snapshot.data!;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.network(
-                    snapshot.data!.imageUrl,
-                    width: SizeUtils.width(context, 100),
-                    height: SizeUtils.height(context, 30),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: SizedBox(
-                      height: SizeUtils.height(context, 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            entity.year.toString(),
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              ),
-                              Text(
-                                entity.rating.toString(),
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                            ],
-                          ),
-                        ],
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.network(
+                      snapshot.data!.imageUrl,
+                      width: SizeUtils.width(context, 100),
+                      height: SizeUtils.height(context, 30),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: SizedBox(
+                        height: SizeUtils.height(context, 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              entity.year.toString(),
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.yellow,
+                                ),
+                                Text(
+                                  entity.rating.toString(),
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(entity.overview),
-                  ),
-                  const Divider(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Assista em:',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                      textAlign: TextAlign.start,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(entity.overview),
                     ),
-                  ),
-                  Wrap(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisSize: MainAxisSize.min,
-                    children: entity.streamingApps
-                        .map((e) => TextButton(
-                              onPressed: () {
-                                print(e.url);
-                              },
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.pink,
-                              ),
-                              child: Text('Assista em ${e.name}'),
-                            ))
-                        .toList(),
-                  )
-                ],
+                    const Divider(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Assista em:',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                    Wrap(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisSize: MainAxisSize.min,
+                      children: entity.streamingApps
+                          .map((e) => TextButton(
+                                onPressed: () {
+                                  print(e.url);
+                                },
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Colors.pink,
+                                ),
+                                child: Text(e.name),
+                              ))
+                          .toList(),
+                    )
+                  ],
+                ),
               );
             } else {
               return const Center(
