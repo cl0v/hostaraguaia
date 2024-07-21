@@ -9,6 +9,7 @@ import '../data/datasources/watchmode_datasource.dart';
 import '../data/repositories/movie_details_repository.dart';
 import '../domain/computed/launch_streaming_app.dart';
 import '../domain/entities/movie_details_entity.dart';
+import 'computed/is_favorite.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({
@@ -22,16 +23,11 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  bool isFavorite = false;
+  bool _isFavorite = false;
 
   @override
   void initState() {
-    isFavorite = context
-        .read<FavoriteBloc>()
-        .state
-        .map<int>((e) => e.id)
-        .toList()
-        .contains(widget.movie.id);
+    _isFavorite = isFavorite(context, widget.movie.id);
     super.initState();
   }
 
@@ -43,23 +39,23 @@ class _DetailsPageState extends State<DetailsPage> {
         actions: [
           IconButton(
             onPressed: () {
-              if (!isFavorite) {
+              if (!_isFavorite) {
                 context
                     .read<FavoriteBloc>()
                     .add(AddToFavoritesEvent(widget.movie));
                 setState(() {
-                  isFavorite = true;
+                  _isFavorite = true;
                 });
               } else {
                 context
                     .read<FavoriteBloc>()
                     .add(RemoveFromFavoritesEvent(widget.movie.id));
                 setState(() {
-                  isFavorite = false;
+                  _isFavorite = false;
                 });
               }
             },
-            color: isFavorite ? Colors.red : Colors.grey,
+            color: _isFavorite ? Colors.red : Colors.grey,
             icon: const Icon(
               Icons.favorite,
             ),
@@ -131,9 +127,6 @@ class _DetailsPageState extends State<DetailsPage> {
                       ),
                     ),
                     Wrap(
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisSize: MainAxisSize.min,
                       children: entity.streamingApps
                           .map((e) => TextButton(
                                 onPressed: () {
