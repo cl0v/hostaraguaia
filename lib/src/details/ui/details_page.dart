@@ -7,6 +7,7 @@ import 'package:hostaraguaia/src/utils/computed/sizer.dart';
 import '../../home/domain/entities/movie_card_entity.dart';
 import '../data/datasources/watchmode_datasource.dart';
 import '../data/repositories/movie_details_repository.dart';
+import '../domain/computed/launch_streaming_app.dart';
 import '../domain/entities/movie_details_entity.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -136,7 +137,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       children: entity.streamingApps
                           .map((e) => TextButton(
                                 onPressed: () {
-                                  print(e.url);
+                                  launchStreamingApp(e.url);
                                 },
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.pink,
