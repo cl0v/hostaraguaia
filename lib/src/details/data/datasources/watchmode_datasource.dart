@@ -19,7 +19,8 @@ class WatchmodeDatasourceImpl implements IMovieDetailshDataSource {
     final r = await client.get(
       'https://api.watchmode.com/v1/title/$id/details/?apiKey=d3zoPV8N1CaODZhNAQ6H22JdOQAVmlmyjtVDIGb6&append_to_response=sources',
     );
-
-    return MovieDetailsModel.fromJson(r.data);
+    
+    final model = MovieDetailsModel.fromJson(r.data);
+    return model;
   }
 }

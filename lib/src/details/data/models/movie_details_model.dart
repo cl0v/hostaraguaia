@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:hostaraguaia/src/details/domain/entities/movie_details_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -29,15 +30,22 @@ class MovieDetailsModel extends MovieDetailsEntity {
   @JsonKey(name: "poster")
   get imageUrl => super.imageUrl;
 
-  static List<StreamingAppsModel> _streamingAppsFromJson(List<dynamic> list) =>
-      list.map((e) => StreamingAppsModel.fromJson(e)).toList();
+  static List<StreamingAppsModel> _streamingAppsFromJson(List<dynamic> list) {
+    var l = <StreamingAppsModel>[];
+    for (var item in list) {
+      final model = StreamingAppsModel.fromJson(item);
+      if (l.contains(model)) continue;
+      l.add(model);
+    }
+    return l;
+  }
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$MovieDetailsModelFromJson(json);
 }
 
 @JsonSerializable()
-class StreamingAppsModel extends StreamingAppsEntity {
+class StreamingAppsModel extends StreamingAppsEntity with EquatableMixin {
   StreamingAppsModel({
     required super.name,
     required super.url,
@@ -49,4 +57,7 @@ class StreamingAppsModel extends StreamingAppsEntity {
 
   factory StreamingAppsModel.fromJson(Map<String, dynamic> json) =>
       _$StreamingAppsModelFromJson(json);
+
+@override
+List<Object?> get props => [name, url];
 }

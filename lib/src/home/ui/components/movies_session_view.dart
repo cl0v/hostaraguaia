@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,13 +11,20 @@ import '../blocs/search_bloc.dart';
 class MoviesSessionView extends StatelessWidget {
   const MoviesSessionView({super.key});
 
+  _isIOS() {
+    if (kIsWeb) {
+      return false;
+    }
+    return Platform.isIOS;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchMoviesStates>(
         builder: (context, state) {
       if (state is SearchMoviesLoadingState) {
         return Center(
-          child: Platform.isIOS
+          child: _isIOS()
               ? const CupertinoActivityIndicator()
               : const CircularProgressIndicator(),
         );
