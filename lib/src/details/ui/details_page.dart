@@ -9,7 +9,7 @@ import '../data/datasources/watchmode_datasource.dart';
 import '../data/repositories/movie_details_repository.dart';
 import '../domain/computed/launch_streaming_app.dart';
 import '../domain/entities/movie_details_entity.dart';
-import 'computed/is_favorite.dart';
+import '../domain/computed/is_favorite.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({
