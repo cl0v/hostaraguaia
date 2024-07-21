@@ -27,9 +27,7 @@ class HomePage extends StatelessWidget {
 }
 
 class _HomeBody extends StatefulWidget {
-  const _HomeBody({
-    super.key,
-  });
+  const _HomeBody();
 
   @override
   State<_HomeBody> createState() => __HomeBodyState();

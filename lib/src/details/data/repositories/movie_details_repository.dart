@@ -9,5 +9,6 @@ class MovieDetailsRepository implements IMovieDetailsRepository{
   });
 
   IMovieDetailshDataSource dataSource;
+  @override
   Future<MovieDetailsEntity> fetchMovieDetails(int id) =>dataSource.fetchMovieDetails(id);
 }
