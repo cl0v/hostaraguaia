@@ -19,17 +19,18 @@ class _SearchBarComponentState extends State<SearchBarComponent> {
     super.dispose();
   }
 
+  void onSubmitted([_]) => context.read<SearchBloc>().add(textController.text);
+
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: textController,
+      onSubmitted: onSubmitted,
       decoration: InputDecoration(
         labelText: 'Pesquise por um titulo',
         border: const OutlineInputBorder(),
         suffixIcon: IconButton(
-          onPressed: () {
-            context.read<SearchBloc>().add(textController.text);
-          },
+          onPressed: onSubmitted,
           icon: const Icon(Icons.search),
         ),
       ),
