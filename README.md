@@ -88,7 +88,7 @@ Utilizar Hive para a persistência local de dados
 1.  **Clone o repositório:**
 
     ```sh
-    git clone https://github.com/usuario/repo.git
+    git clone https://github.com/cl0v/hostaraguaia.git
     cd repo
     ```
 
